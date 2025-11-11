@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
+
+/* Prefix	Min-width	Common Device Type
+sm	640px	Mobile (landscape) / small tablets
+md	768px	Tablets / small laptops
+lg	1024px	Laptops / small desktops
+xl	1280px	Desktops
+2xl	1536px	Large desktops / wide monitors */
+
+html,
+body {
+  font-family: "Outfit", sans-serif !important;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  --breakpoint-xs: 374px; /* Extra small devices (iPhone SE and below) */
+  --breakpoint-sm: 640px; /* Small devices (phones in landscape) */
+  --breakpoint-md: 768px; /* Medium devices (tablets) */
+  --breakpoint-lg: 1024px; /* Large devices (laptops) */
+  --breakpoint-xl: 1280px; /* Extra large (desktops) */
+  --breakpoint-2xl: 1536px; /* 2X large screens my development size */
+}
