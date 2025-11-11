@@ -16,9 +16,7 @@ type Incoming = {
 };
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  const secret =
-    process.env.RECAPTCHA_SECRET_KEY ||
-    "6LcWx_ErAAAAALFgMaq01uhEviotdN9ECet3aAfB";
+  const secret = process.env.RECAPTCHA_SECRET_KEY;
   if (!secret) return false;
 
   const params = new URLSearchParams();
