@@ -263,7 +263,10 @@ export default function ApplyNowModal({ onClose }: ApplyNowModalProps) {
           {/* reCAPTCHA v2 checkbox */}
           <div className="flex justify-center">
             <ReCAPTCHA
-              sitekey={process.env.RECAPTCHA_SITE_KEY || ""}
+              sitekey={
+                process.env.RECAPTCHA_SITE_KEY ||
+                "6LcWx_ErAAAAAJcwyU0j8gv0iJzOnCE3Dsr5QOr7"
+              }
               onChange={(token) => {
                 setRecaptchaToken(token);
                 setErrorMsg(null);

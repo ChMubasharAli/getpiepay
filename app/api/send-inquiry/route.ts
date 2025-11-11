@@ -16,20 +16,19 @@ type Incoming = {
 };
 
 async function verifyRecaptcha(token: string): Promise<boolean> {
-  const secret = process.env.RECAPTCHA_SECRET_KEY;
+  const secret =
+    process.env.RECAPTCHA_SECRET_KEY ||
+    "6LcWx_ErAAAAALFgMaq01uhEviotdN9ECet3aAfB";
   if (!secret) return false;
 
   const params = new URLSearchParams();
   params.append("secret", secret);
   params.append("response", token);
 
-  const res = await fetch(
-    "https://www.google.com/recaptcha/api/siteverify",
-    {
-      method: "POST",
-      body: params,
-    }
-  );
+  const res = await fetch("https://www.google.com/recaptcha/api/siteverify", {
+    method: "POST",
+    body: params,
+  });
 
   const data = await res.json();
   // For v2 checkbox, data.success should be true when verified.
@@ -111,8 +110,8 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ ok: true, message: "Sent" });
   } catch (err) {
-  console.error("send-inquiry error:", err);
-  const message = err instanceof Error ? err.message : "Server error";
-  return NextResponse.json({ message }, { status: 500 });
-}
+    console.error("send-inquiry error:", err);
+    const message = err instanceof Error ? err.message : "Server error";
+    return NextResponse.json({ message }, { status: 500 });
+  }
 }
