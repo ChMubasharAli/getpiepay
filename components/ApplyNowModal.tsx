@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import { X } from "lucide-react";
+import { toast } from "react-toastify";
 
 interface ApplyNowModalProps {
   onClose: () => void;
@@ -105,20 +106,16 @@ export default function ApplyNowModal({ onClose }: ApplyNowModalProps) {
       const data = await res.json();
 
       if (!res.ok) {
+        toast.error("Failed to send inquiry.");
         throw new Error(data?.message || "Failed to send. Try again later.");
       }
 
-      setSuccessMsg("Your message has been sent. We'll contact you soon.");
+      toast.success("Inquiry sent successfully.");
       resetForm();
-      // optionally close modal after a delay
-      setTimeout(() => {
-        setSuccessMsg(null);
-        onClose();
-      }, 1800);
     } catch (err) {
       const message =
         err instanceof Error ? err.message : "Unexpected error occurred.";
-      setErrorMsg(message);
+      toast.error(message);
     } finally {
       setLoading(false);
     }
